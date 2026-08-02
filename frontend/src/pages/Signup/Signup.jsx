@@ -1,80 +1,95 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { FaUser, FaEnvelope, FaLock, FaBrain } from "react-icons/fa";
 import api from "../../services/api";
+import "./Signup.css";
 
 function Signup() {
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
 
     try {
-
-      const response = await api.post("/api/users/signup", {
+      await api.post("/api/users/signup", {
         fullName: name,
         email: email,
-        password: password
+        password: password,
       });
 
-      console.log(response.data);
-
-      alert("Signup Successful");
-
-    } catch (error) {
-
-      console.log("Signup Error:", error.response);
-
-      alert(
-        error.response?.data?.message || 
-        "Signup Failed"
-      );
-
+      setSuccess("Signup successful. Redirecting to login...");
+      setTimeout(() => navigate("/login"), 1200);
+    } catch (err) {
+      setError(err.response?.data?.message || "Signup failed");
     }
   };
 
-
   return (
-    <div>
+    <div className="auth-page">
+      <div className="auth-glow glow-one"></div>
+      <div className="auth-glow glow-two"></div>
 
-      <h1>Signup</h1>
+      <div className="auth-card">
+        <div className="auth-logo">
+          <span className="auth-logo-icon"><FaBrain /></span>
+          <h2>AI Knowledge Search</h2>
+        </div>
 
-      <form onSubmit={handleSignup}>
+        <h1>Create account</h1>
+        <p className="auth-sub">Sign up to start exploring your knowledge.</p>
 
-        <input
-          type="text"
-          placeholder="Enter Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <form onSubmit={handleSignup}>
+          <div className="auth-field">
+            <FaUser className="auth-field-icon" />
+            <input
+              type="text"
+              placeholder="Enter Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
 
-        <br />
+          <div className="auth-field">
+            <FaEnvelope className="auth-field-icon" />
+            <input
+              type="email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <div className="auth-field">
+            <FaLock className="auth-field-icon" />
+            <input
+              type="password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <br />
+          {error && <p className="auth-error">{error}</p>}
+          {success && <p className="auth-success">{success}</p>}
 
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <button type="submit" className="auth-btn">Signup</button>
+        </form>
 
-        <br />
-
-        <button type="submit">
-          Signup
-        </button>
-
-      </form>
-
+        <p className="auth-switch">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 }

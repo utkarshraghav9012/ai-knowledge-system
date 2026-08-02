@@ -2,11 +2,9 @@
   min-height: 100vh;
 }
 
-
 .main-layout {
   display: flex;
 }
-
 
 .content-area {
   flex: 1;
@@ -14,9 +12,7 @@
   min-width: 0;
 }
 
-
 @media (max-width: 768px) {
-
   .main-layout {
     flex-direction: column;
   }
@@ -24,5 +20,4 @@
   .content-area {
     padding: 1rem;
   }
-
 }
