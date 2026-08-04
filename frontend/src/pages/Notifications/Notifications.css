@@ -1,0 +1,142 @@
+.notifications-page{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+.notifications-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    gap:20px;
+}
+
+.notifications-header h1{
+    color:#F5F5F3;
+    font-size:2rem;
+    margin-bottom:8px;
+}
+
+.notifications-header p{
+    color:#A7AEA9;
+}
+
+.notification-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.notification-buttons button{
+    padding:11px 18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#5E756B;
+    color:#fff;
+    transition:.25s;
+}
+
+.notification-buttons button:hover{
+    background:#70887D;
+}
+
+.notification-search{
+    margin-bottom:25px;
+}
+
+.notification-search input{
+    width:100%;
+    padding:16px 20px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.06);
+    background:#232826;
+    color:#F5F5F3;
+    outline:none;
+}
+
+.notification-search input::placeholder{
+    color:#8D9892;
+}
+
+.notification-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.notification-card{
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    padding:20px;
+    border-radius:18px;
+    background:#202523;
+    border:1px solid rgba(255,255,255,.05);
+    transition:.25s;
+}
+
+.notification-card:hover{
+    transform:translateY(-2px);
+    border-color:rgba(255,255,255,.10);
+}
+
+.notification-card.unread{
+    border-left:4px solid #6B7D72;
+}
+
+.notification-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    margin-top:8px;
+    flex-shrink:0;
+}
+
+.notification-dot.success{
+    background:#5E9E6E;
+}
+
+.notification-dot.ai{
+    background:#7C6ED6;
+}
+
+.notification-dot.info{
+    background:#5C93B7;
+}
+
+.notification-dot.warning{
+    background:#C89A4A;
+}
+
+.notification-content h3{
+    color:#F5F5F3;
+    margin-bottom:8px;
+}
+
+.notification-content p{
+    color:#B3BBB6;
+    margin-bottom:6px;
+}
+
+.notification-content span{
+    color:#8D9892;
+    font-size:13px;
+}
+
+@media(max-width:768px){
+
+.notifications-header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.notification-buttons{
+    width:100%;
+}
+
+.notification-buttons button{
+    flex:1;
+}
+
+}

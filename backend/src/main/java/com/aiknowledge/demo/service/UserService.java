@@ -35,13 +35,10 @@ public class UserService {
 
         System.out.println("LOGIN EMAIL RECEIVED: " + email);
 
-
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-
         System.out.println("USER FOUND: " + user.getEmail());
-
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
 
@@ -50,9 +47,16 @@ public class UserService {
             throw new RuntimeException("Invalid password");
         }
 
-
         System.out.println("LOGIN SUCCESS");
 
         return user;
+    }
+
+
+    // Find User By Email
+    public User findByEmail(String email) {
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

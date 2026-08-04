@@ -1,0 +1,244 @@
+.viewer-page{
+    max-width:1400px;
+    margin:auto;
+    padding:30px;
+}
+
+.viewer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.viewer-top h1{
+    color:#fff;
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.viewer-top p{
+    color:#94a3b8;
+}
+
+.download-btn{
+    padding:12px 24px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    color:#fff;
+    font-weight:600;
+    background:#5b6ee1;
+    transition:.3s;
+}
+
+.download-btn:hover{
+    transform:translateY(-2px);
+    background:#4f5fd5;
+}
+
+.viewer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.preview-card,
+.summary-card,
+.ask-ai-card,
+.conversation-card{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    backdrop-filter:blur(20px);
+}
+
+.preview-card h2,
+.summary-card h2,
+.ask-ai-card h2,
+.conversation-card h2{
+
+    color:#fff;
+
+    margin-bottom:20px;
+}
+
+.preview-placeholder{
+
+    height:600px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#94a3b8;
+
+    font-size:1.2rem;
+
+    background:#111827;
+
+    border:1px dashed rgba(255,255,255,.12);
+}
+
+.summary-card p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+}
+
+.keyword-section{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.keyword-section span{
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:#1e293b;
+
+    color:#fff;
+
+    font-size:.85rem;
+}
+
+.ask-box{
+
+    display:flex;
+
+    gap:15px;
+}
+
+.ask-box input{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:#111827;
+
+    color:white;
+}
+
+.ask-box button{
+
+    padding:15px 28px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:#5b6ee1;
+
+    transition:.3s;
+}
+
+.ask-box button:hover{
+
+    background:#4f5fd5;
+}
+
+.conversation-card{
+
+    margin-top:30px;
+}
+
+.chat-message{
+
+    padding:18px;
+
+    border-radius:16px;
+
+    margin-bottom:15px;
+
+    line-height:1.8;
+}
+
+.chat-message.user{
+
+    background:#1e293b;
+
+    color:white;
+}
+
+.chat-message.ai{
+
+    background:rgba(91,110,225,.12);
+
+    color:#dbeafe;
+
+    border:1px solid rgba(91,110,225,.25);
+}
+
+@media(max-width:1000px){
+
+.viewer-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.viewer-top{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.ask-box{
+
+flex-direction:column;
+
+}
+
+.ask-box button{
+
+width:100%;
+
+}
+
+.preview-placeholder{
+
+height:400px;
+
+}
+
+}

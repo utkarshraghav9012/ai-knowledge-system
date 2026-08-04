@@ -1,0 +1,139 @@
+.search-page{
+    max-width:1200px;
+    margin:auto;
+    padding:30px;
+}
+
+.search-header{
+    margin-bottom:35px;
+}
+
+.search-header h1{
+    color:#fff;
+    font-size:2.3rem;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.search-header p{
+    color:#94a3b8;
+    font-size:1rem;
+}
+
+.search-box-large{
+    display:flex;
+    gap:15px;
+    margin-bottom:40px;
+    padding:18px;
+    border-radius:22px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(25px);
+    transition:.3s;
+}
+
+.search-box-large:hover{
+    border-color:#7c3aed;
+    box-shadow:0 0 40px rgba(124,58,237,.25);
+}
+
+.search-box-large input{
+    flex:1;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:white;
+    font-size:1rem;
+}
+
+.search-box-large input::placeholder{
+    color:#94a3b8;
+}
+
+.search-box-large button{
+    padding:13px 28px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    color:white;
+    font-weight:600;
+    background:linear-gradient(135deg,#7c3aed,#8b5cf6);
+    transition:.3s;
+}
+
+.search-box-large button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(124,58,237,.35);
+}
+
+.suggestion-section{
+    margin-bottom:40px;
+}
+
+.suggestion-section h3{
+    color:white;
+    margin-bottom:18px;
+}
+
+.suggestion-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.suggestion-grid button{
+    padding:18px;
+    border:none;
+    border-radius:16px;
+    cursor:pointer;
+    color:white;
+    text-align:left;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.suggestion-grid button:hover{
+    border-color:#7c3aed;
+    transform:translateY(-3px);
+}
+
+.answer-section h2{
+    color:white;
+    margin-bottom:18px;
+}
+
+.answer-card{
+    min-height:220px;
+    padding:25px;
+    border-radius:22px;
+    color:#cbd5e1;
+    line-height:1.8;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(25px);
+}
+
+@media(max-width:900px){
+
+.suggestion-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.search-box-large{
+flex-direction:column;
+}
+
+.search-box-large button{
+width:100%;
+}
+
+.suggestion-grid{
+grid-template-columns:1fr;
+}
+
+}

@@ -19,7 +19,7 @@ const menuItems = [
   { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> },
   { to: "/upload", label: "Upload", icon: <FaCloudUploadAlt /> },
   { to: "/search", label: "AI Search", icon: <FaSearch /> },
-  { to: "/files", label: "My Files", icon: <FaFolderOpen /> },
+  { to: "/my-files", label: "My Files", icon: <FaFolderOpen /> },
   { to: "/recent", label: "Recent", icon: <FaClock /> },
   { to: "/bookmarks", label: "Bookmarks", icon: <FaBookmark /> },
   { to: "/history", label: "History", icon: <FaHistory /> },

@@ -1,224 +1,575 @@
+/* ===========================
+   HERO SECTION
+=========================== */
+
 .hero{
     position:relative;
-    width:100%;
-    min-height:520px;
     display:grid;
-    grid-template-columns:1.2fr 1fr;
+    grid-template-columns:1.35fr .9fr;
+    gap:60px;
     align-items:center;
-    gap:4rem;
-    padding:4rem;
-    margin-bottom:3rem;
-    border-radius:32px;
+
+    width:100%;
+    min-height:560px;
+
+    padding:60px;
+
+    border-radius:30px;
+
     overflow:hidden;
-    background: linear-gradient(145deg, rgba(18,22,40,.95), rgba(10,12,24,.92));
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(30px);
-    box-shadow: 0 25px 80px rgba(0,0,0,.45);
+
+    background:
+    radial-gradient(circle at top right,
+    rgba(94,117,107,.10),
+    transparent 38%),
+
+    radial-gradient(circle at bottom left,
+    rgba(92,147,183,.05),
+    transparent 35%),
+
+    #171917;
+
+    border:1px solid rgba(255,255,255,.06);
 }
+
+
+/* Grid Pattern */
 
 .hero::before{
-    content:"";
-    position:absolute;
-    width:550px;
-    height:550px;
-    top:-220px;
-    left:-180px;
-    background: radial-gradient(circle, rgba(99,102,241,.32), transparent 70%);
-    filter:blur(60px);
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background-image:
+
+linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+
+linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+background-size:40px 40px;
+
+pointer-events:none;
+
 }
+
+
+/* Soft Light */
 
 .hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background: linear-gradient(130deg, transparent 15%, rgba(255,255,255,.04) 45%, transparent 75%);
-    pointer-events:none;
+
+content:"";
+
+position:absolute;
+
+width:420px;
+
+height:420px;
+
+right:-120px;
+
+top:-120px;
+
+background:
+
+radial-gradient(circle,
+
+rgba(94,117,107,.12),
+
+transparent 70%);
+
+filter:blur(70px);
+
+pointer-events:none;
+
 }
+
+
+/* ===========================
+CONTENT
+=========================== */
 
 .hero-content{
-    position:relative;
-    z-index:5;
+
+position:relative;
+
+z-index:2;
+
 }
+
+
+/* Badge */
 
 .hero-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:.5rem;
-    padding:.55rem 1rem;
-    border-radius:999px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-    color:#cbd5e1;
-    font-size:.9rem;
-    margin-bottom:2rem;
+
+display:inline-flex;
+
+align-items:center;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+background:#232826;
+
+border:1px solid rgba(255,255,255,.06);
+
+color:#BFC7C2;
+
+font-size:.88rem;
+
+letter-spacing:.4px;
+
+margin-bottom:22px;
+
 }
+
+
+/* Title */
 
 .hero h1{
-    font-size:4.2rem;
-    line-height:1.05;
-    font-weight:800;
-    margin-bottom:1rem;
-    letter-spacing:-2px;
-    background: linear-gradient(90deg, #ffffff, #d8b4fe, #818cf8, #ffffff);
-    background-size:300%;
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:gradientMove 8s linear infinite;
+
+font-size:4rem;
+
+font-weight:800;
+
+letter-spacing:-2px;
+
+color:#F4F3EF;
+
+margin-bottom:16px;
+
 }
 
-@keyframes gradientMove{
-    0%{ background-position:0%; }
-    100%{ background-position:300%; }
-}
+
+/* Subtitle */
 
 .hero h2{
-    display:flex;
-    gap:1rem;
-    flex-wrap:wrap;
-    margin-bottom:1.6rem;
+
+font-size:1.35rem;
+
+font-weight:500;
+
+color:#A8B0AA;
+
+margin-bottom:28px;
+
+line-height:1.6;
+
 }
 
-.hero h2 span{
-    color:#94a3b8;
-    font-size:1.15rem;
-    font-weight:600;
-}
+
+/* Description */
 
 .hero p{
-    max-width:560px;
-    color:#94a3b8;
-    font-size:1.1rem;
-    line-height:1.9;
+
+max-width:640px;
+
+font-size:1.05rem;
+
+line-height:1.9;
+
+color:#B7BEB9;
+
 }
+
+
+/* ===========================
+BUTTONS
+=========================== */
 
 .hero-buttons{
-    display:flex;
-    align-items:center;
-    gap:1rem;
-    margin-top:2.5rem;
-    flex-wrap:wrap;
+
+display:flex;
+
+gap:18px;
+
+margin-top:34px;
+
+margin-bottom:34px;
+
+flex-wrap:wrap;
+
 }
+
 
 .hero-buttons button{
-    border:none;
-    outline:none;
-    cursor:pointer;
-    font-size:1rem;
-    font-weight:600;
-    padding:16px 32px;
-    border-radius:16px;
-    transition:.35s ease;
+
+padding:15px 32px;
+
+border-radius:14px;
+
+cursor:pointer;
+
+font-size:15px;
+
+font-weight:600;
+
+transition:.28s;
+
+border:none;
+
 }
+
 
 .primary-btn{
-    color:#fff;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6, #7c3aed);
-    background-size:250%;
-    box-shadow: 0 15px 40px rgba(99,102,241,.35);
+
+background:#5E756B;
+
+color:white;
+
 }
+
 
 .primary-btn:hover{
-    transform:translateY(-6px);
-    background-position:right;
-    box-shadow: 0 25px 60px rgba(99,102,241,.45);
+
+background:#6E857B;
+
+transform:translateY(-2px);
+
 }
+
 
 .secondary-btn{
-    background: rgba(255,255,255,.06);
-    color:white;
-    border:1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(20px);
+
+background:#252A28;
+
+border:1px solid rgba(255,255,255,.06) !important;
+
+color:#ECEBE7;
+
 }
+
 
 .secondary-btn:hover{
-    background: rgba(255,255,255,.12);
-    transform:translateY(-6px);
+
+background:#313735;
+
 }
 
-.hero-image{
+
+/* ===========================
+FEATURE PILLS
+=========================== */
+
+.hero-features{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:14px;
+
+}
+
+
+.feature-pill{
+
+padding:11px 18px;
+
+border-radius:999px;
+
+background:#232826;
+
+border:1px solid rgba(255,255,255,.05);
+
+color:#CBD2CD;
+
+font-size:14px;
+
+transition:.25s;
+
+}
+
+
+.feature-pill:hover{
+
+border-color:rgba(255,255,255,.12);
+
+background:#2A302D;
+
+}
+
+
+
+/* ===========================
+   RIGHT PANEL
+=========================== */
+
+.hero-visual{
+    position:relative;
+    z-index:2;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    position:relative;
-    z-index:5;
 }
 
-.brain-circle{
-    width:320px;
-    height:320px;
-    border-radius:50%;
+
+/* ===========================
+AI STATUS CARD
+=========================== */
+
+.status-card{
+
+    width:360px;
+
+    background:#212624;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:24px;
+
+    padding:32px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.22);
+
+}
+
+.status-card h3{
+
+    color:#F4F3EF;
+
+    font-size:1.3rem;
+
+    margin-bottom:28px;
+
+    font-weight:700;
+
+}
+
+
+/* ===========================
+STATUS ITEM
+=========================== */
+
+.status-item{
+
     display:flex;
-    justify-content:center;
+
+    justify-content:space-between;
+
     align-items:center;
-    font-size:7rem;
-    position:relative;
-    color:white;
-    background: radial-gradient(circle at top, rgba(255,255,255,.18), rgba(80,80,160,.18), rgba(15,15,30,.92));
-    border: 1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(35px);
-    box-shadow: 0 0 80px rgba(99,102,241,.45), inset 0 0 60px rgba(255,255,255,.05);
-    animation: floatOrb 5s ease-in-out infinite;
+
+    padding:16px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
 }
 
-.brain-circle::before{
-    content:"";
-    position:absolute;
-    inset:-22px;
-    border-radius:50%;
-    border: 1px solid rgba(255,255,255,.08);
-    animation: rotateRing 20s linear infinite;
+.status-item:last-child{
+
+    border-bottom:none;
+
 }
 
-.brain-circle::after{
-    content:"";
-    position:absolute;
-    inset:-45px;
-    border-radius:50%;
-    border: 1px dashed rgba(99,102,241,.22);
-    animation: rotateReverse 28s linear infinite;
+.status-item span{
+
+    color:#AAB2AC;
+
+    font-size:.95rem;
+
 }
 
-@keyframes floatOrb{
-    0%{ transform:translateY(0); }
-    50%{ transform:translateY(-16px); }
-    100%{ transform:translateY(0); }
+.status-item strong{
+
+    color:#77B38A;
+
+    font-size:.92rem;
+
+    font-weight:600;
+
 }
 
-@keyframes rotateRing{
-    from{ transform:rotate(0deg); }
-    to{ transform:rotate(360deg); }
-}
 
-@keyframes rotateReverse{
-    from{ transform:rotate(360deg); }
-    to{ transform:rotate(0deg); }
+/* ===========================
+HOVER
+=========================== */
+
+.hero{
+
+transition:.3s;
+
 }
 
 .hero:hover{
-    transform:translateY(-4px);
-    transition:.4s ease;
-    box-shadow: 0 35px 90px rgba(0,0,0,.55);
+
+border-color:rgba(255,255,255,.09);
+
 }
 
-@media(max-width:1100px){
-.hero{ grid-template-columns:1fr; text-align:center; padding:3rem; }
-.hero-content{ display:flex; flex-direction:column; align-items:center; }
-.hero h1{ font-size:3.2rem; }
-.brain-circle{ width:260px; height:260px; font-size:5.5rem; }
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:1150px){
+
+.hero{
+
+grid-template-columns:1fr;
+
+padding:45px;
+
+gap:50px;
+
+}
+
+.hero-content{
+
+text-align:center;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.hero p{
+
+max-width:700px;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-features{
+
+justify-content:center;
+
+}
+
+.status-card{
+
+width:100%;
+
+max-width:520px;
+
+}
+
 }
 
 @media(max-width:768px){
-.hero{ padding:2rem; border-radius:22px; }
-.hero h1{ font-size:2.4rem; }
-.hero h2{ justify-content:center; }
-.hero-buttons{ justify-content:center; }
-.hero p{ font-size:1rem; }
-.brain-circle{ width:220px; height:220px; font-size:4.5rem; }
+
+.hero{
+
+padding:30px;
+
+border-radius:22px;
+
 }
 
-@media(max-width:480px){
-.hero{ padding:1.5rem; }
-.hero h1{ font-size:2rem; }
-.hero-buttons{ flex-direction:column; width:100%; }
-.hero-buttons button{ width:100%; }
+.hero h1{
+
+font-size:2.7rem;
+
+}
+
+.hero h2{
+
+font-size:1.05rem;
+
+}
+
+.hero p{
+
+font-size:.96rem;
+
+line-height:1.8;
+
+}
+
+.hero-buttons{
+
+width:100%;
+
+}
+
+.hero-buttons button{
+
+flex:1;
+
+min-width:170px;
+
+}
+
+.status-card{
+
+padding:24px;
+
+}
+
+}
+
+@media(max-width:520px){
+
+.hero{
+
+padding:22px;
+
+}
+
+.hero h1{
+
+font-size:2.15rem;
+
+letter-spacing:-1px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+}
+
+.hero-buttons button{
+
+width:100%;
+
+}
+
+.hero-features{
+
+gap:10px;
+
+}
+
+.feature-pill{
+
+font-size:13px;
+
+padding:9px 14px;
+
+}
+
+.status-card{
+
+padding:20px;
+
+}
+
+.status-card h3{
+
+font-size:1.1rem;
+
+margin-bottom:18px;
+
+}
+
+.status-item{
+
+padding:13px 0;
+
+}
+
 }

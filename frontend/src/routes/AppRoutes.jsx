@@ -14,7 +14,13 @@ import Settings from "../pages/Settings/Settings";
 
 import ProtectedRoute from "./ProtectedRoute";
 import Layout from "../components/layout/Layout";
-
+import MyFiles from "../pages/MyFiles/MyFiles";
+import Search from "../pages/Search/Search";
+import FileViewer from "../pages/FileViewer/FileViewer";
+import History from "../pages/History/History";
+import Bookmarks from "../pages/Bookmarks/Bookmarks";
+import Notifications from "../pages/Notifications/Notifications";
+import Analytics from "../pages/Analytics/Analytics";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -22,6 +28,13 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/my-files" element={<MyFiles />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/viewer" element={<FileViewer />} />
+<Route path="/history" element={<History />} />
+<Route path="/bookmarks" element={<Bookmarks />} />
+<Route path="/notifications" element={<Notifications />} />
+<Route path="/analytics" element={<Analytics />} />
 
         <Route
           element={
