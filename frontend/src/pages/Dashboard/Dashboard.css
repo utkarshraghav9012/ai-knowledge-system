@@ -1,7 +1,7 @@
 .dashboard{
     position:relative;
     min-height:calc(100vh - 70px);
-    padding:24px 32px 32px;
+    padding:12px 32px 32px;
     overflow-x:hidden;
     overflow-y:auto;
     background:
@@ -50,105 +50,67 @@
 /* ========================= */
 
 .dashboard-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:flex-end;
-
-    margin-bottom:12px;
-
+    margin-bottom:4px;
     padding-bottom:8px;
-
     border-bottom:1px solid rgba(255,255,255,.05);
-
 }
 
 .dashboard-header h1{
-
     color:#F3F2EE;
-
     font-size:2.45rem;
-
     font-weight:700;
-
     letter-spacing:-1px;
-
     margin:0;
-
     line-height:1.05;
-
 }
 
 .dashboard-header p{
-
     margin:6px 0 0;
-
     color:#9CA59F;
-
     font-size:15px;
-
     letter-spacing:.3px;
-
 }
 
 /* ========================= */
 
-/* Hero remove hone ke baad SearchBox bilkul niche aa jayega */
-
 .dashboard .search-box{
-
     margin-top:0 !important;
-
 }
 
 /* ========================= */
 
 .dashboard .upload-cards{
-
-    margin-top:22px;
-
+    margin-top:14px;
 }
 
 /* ========================= */
 
 .dashboard-bottom{
-
     display:grid;
-
     grid-template-columns:1fr 1.15fr;
-
     gap:22px;
-
-    margin-top:22px;
-
+    margin-top:18px;
 }
 
 /* ========================= */
 
 .card{
-
     background:#202422;
-
     border:1px solid rgba(255,255,255,.06);
-
     border-radius:18px;
-
 }
 
 /* ========================= */
 
 button{
-
     transition:.22s;
-
 }
 
 button:hover{
-
     transform:translateY(-2px);
-
 }
 
 /* ========================= */
@@ -156,9 +118,7 @@ button:hover{
 @media(max-width:1200px){
 
 .dashboard-bottom{
-
 grid-template-columns:1fr;
-
 }
 
 }
@@ -168,45 +128,30 @@ grid-template-columns:1fr;
 @media(max-width:768px){
 
 .dashboard{
-
-padding:20px 16px 28px;
-
+padding:16px;
 }
 
 .dashboard-header{
-
 flex-direction:column;
-
 align-items:flex-start;
-
 gap:8px;
-
-margin-bottom:10px;
-
+margin-bottom:6px;
 }
 
 .dashboard-header h1{
-
 font-size:2rem;
-
 }
 
 .dashboard-header p{
-
 font-size:14px;
-
 }
 
 .dashboard .upload-cards{
-
-margin-top:18px;
-
+margin-top:14px;
 }
 
 .dashboard-bottom{
-
-margin-top:18px;
-
+margin-top:16px;
 }
 
 }
@@ -216,27 +161,19 @@ margin-top:18px;
 @media(max-width:520px){
 
 .dashboard{
-
-padding:16px;
-
+padding:14px;
 }
 
 .dashboard-header{
-
 padding-bottom:6px;
-
 }
 
 .dashboard-header h1{
-
 font-size:1.7rem;
-
 }
 
 .dashboard-header p{
-
 font-size:13px;
-
 }
 
 }

@@ -6,7 +6,7 @@
 
 .upload-title {
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 10px;
@@ -14,7 +14,7 @@
 
 .upload-subtitle {
     text-align: center;
-    color: #94a3b8;
+    color: #9ca3af;
     margin-bottom: 35px;
     font-size: 1rem;
 }
@@ -24,50 +24,53 @@
 ========================== */
 
 .upload-dropzone {
+
     padding: 55px 30px;
+
     border-radius: 24px;
-    border: 2px dashed rgba(255,255,255,.15);
+
+    border: 2px dashed rgba(255,255,255,.10);
 
     background: linear-gradient(
-        145deg,
-        rgba(20,25,45,.96),
-        rgba(10,12,24,.92)
+        180deg,
+        #111827,
+        #0b1220
     );
-
-    backdrop-filter: blur(22px);
 
     transition: .3s ease;
 
     text-align: center;
 
     cursor: pointer;
+
+    box-shadow: 0 20px 45px rgba(0,0,0,.35);
 }
 
 .upload-dropzone:hover,
-.upload-dropzone.dragging {
+.upload-dropzone.dragging{
 
-    border-color:#6366f1;
+    border-color:#3b82f6;
 
-    transform:translateY(-3px);
+    transform:translateY(-4px);
 
     box-shadow:
-    0 0 60px rgba(99,102,241,.18);
+    0 0 35px rgba(59,130,246,.18);
 }
 
 .upload-cloud-icon{
 
     font-size:65px;
 
-    color:#818cf8;
+    color:#60a5fa;
 
     margin-bottom:18px;
 }
 
 .upload-drop-text{
 
-    color:white;
+    color:#ffffff;
 
-    font-size:1.15rem;
+    font-size:1.2rem;
 
     font-weight:700;
 
@@ -76,13 +79,13 @@
 
 .upload-or{
 
-    color:#94a3b8;
+    color:#9ca3af;
 
     margin-bottom:22px;
 }
 
 /* ==========================
-BUTTONS
+   BUTTONS
 ========================== */
 
 .choose-file-btn,
@@ -94,20 +97,19 @@ BUTTONS
 
     cursor:pointer;
 
-    color:white;
+    color:#ffffff;
 
     font-weight:700;
 
     border-radius:14px;
 
-    transition:.3s ease;
+    transition:.25s;
 
     background:
     linear-gradient(
     135deg,
-    #6366f1,
-    #8b5cf6);
-
+    #2563eb,
+    #3b82f6);
 }
 
 .choose-file-btn{
@@ -130,11 +132,11 @@ BUTTONS
     transform:translateY(-3px);
 
     box-shadow:
-    0 18px 40px rgba(99,102,241,.35);
+    0 15px 35px rgba(37,99,235,.35);
 }
 
 /* ==========================
-SELECTED FILE
+   SELECTED FILE
 ========================== */
 
 .selected-file-card{
@@ -151,13 +153,9 @@ SELECTED FILE
 
     border-radius:20px;
 
-    background:
-    rgba(255,255,255,.05);
+    background:#111827;
 
-    border:
-    1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
 
     animation:fadeUp .3s ease;
 }
@@ -186,10 +184,10 @@ SELECTED FILE
     background:
     linear-gradient(
     135deg,
-    #ef4444,
-    #dc2626);
+    #2563eb,
+    #3b82f6);
 
-    color:white;
+    color:#ffffff;
 
     border-radius:16px;
 
@@ -198,7 +196,7 @@ SELECTED FILE
 
 .selected-file-left h3{
 
-    color:white;
+    color:#ffffff;
 
     font-size:1rem;
 
@@ -207,7 +205,7 @@ SELECTED FILE
 
 .selected-file-left p{
 
-    color:#94a3b8;
+    color:#9ca3af;
 
     font-size:.85rem;
 }
@@ -224,22 +222,26 @@ SELECTED FILE
 
     border-radius:14px;
 
-    color:white;
+    background:#1f2937;
 
-    background:#ef4444;
+    color:#ffffff;
+
+    border:1px solid rgba(255,255,255,.08);
 
     transition:.25s;
 }
 
 .remove-file-btn:hover{
 
-    transform:scale(1.08);
+    background:#2563eb;
 
-    background:#dc2626;
+    tran
+    
+    sform:scale(1.06);
 }
 
 /* ==========================
-PROGRESS
+   PROGRESS
 ========================== */
 
 .progress-wrapper{
@@ -253,7 +255,7 @@ PROGRESS
 
     justify-content:space-between;
 
-    color:white;
+    color:#ffffff;
 
     margin-bottom:10px;
 
@@ -277,17 +279,17 @@ PROGRESS
 
     border-radius:999px;
 
-    background:
-    linear-gradient(
-    90deg,
-    #22c55e,
-    #06b6d4);
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6
+    );
 
     transition:.35s ease;
 }
 
 /* ==========================
-ALERTS
+   ALERTS
 ========================== */
 
 .upload-alert{
@@ -311,33 +313,29 @@ ALERTS
 
 .success-alert{
 
-    color:#bbf7d0;
+    color:#bfdbfe;
 
-    background:
-    rgba(34,197,94,.12);
+    background:rgba(37,99,235,.12);
 
-    border:
-    1px solid rgba(34,197,94,.35);
+    border:1px solid rgba(37,99,235,.35);
 }
 
 .error-alert{
 
     color:#fecaca;
 
-    background:
-    rgba(239,68,68,.12);
+    background:rgba(239,68,68,.12);
 
-    border:
-    1px solid rgba(239,68,68,.35);
+    border:1px solid rgba(239,68,68,.30);
 }
 
 /* ==========================
-SUPPORTED FORMATS
+   SUPPORTED FORMATS
 ========================== */
 
 .formats-title{
 
-    color:white;
+    color:#ffffff;
 
     margin-top:40px;
 
@@ -352,8 +350,7 @@ SUPPORTED FORMATS
 
     display:grid;
 
-    grid-template-columns:
-    repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
 
     gap:18px;
 }
@@ -370,20 +367,20 @@ SUPPORTED FORMATS
 
     border-radius:18px;
 
-    background:
-    rgba(255,255,255,.05);
+    background:#111827;
 
-    border:
-    1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
 
-    transition:.3s;
+    transition:.25s;
 }
 
 .format-card:hover{
 
     transform:translateY(-4px);
 
-    border-color:#6366f1;
+    border-color:#3b82f6;
+
+    box-shadow:0 12px 30px rgba(37,99,235,.18);
 }
 
 .format-icon{
@@ -400,34 +397,38 @@ SUPPORTED FORMATS
 
     border-radius:14px;
 
-    color:white;
+    color:#ffffff;
 
     font-size:20px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
 }
 
-.tone-pdf .format-icon{
+/* Same Theme For All Cards */
 
-    background:#ef4444;
+.tone-pdf .format-icon{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
 }
 
 .tone-video .format-icon{
-
-    background:#22c55e;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
 }
 
 .tone-audio .format-icon{
-
-    background:#f59e0b;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
 }
 
 .tone-image .format-icon{
-
-    background:#3b82f6;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
 }
 
 .format-card h4{
 
-    color:white;
+    color:#ffffff;
 
     margin-bottom:4px;
 
@@ -436,7 +437,7 @@ SUPPORTED FORMATS
 
 .format-card p{
 
-    color:#94a3b8;
+    color:#9ca3af;
 
     font-size:.82rem;
 }
@@ -447,13 +448,13 @@ SUPPORTED FORMATS
 
     text-align:center;
 
-    color:#64748b;
+    color:#6b7280;
 
     font-size:.85rem;
 }
 
 /* ==========================
-ANIMATION
+   ANIMATION
 ========================== */
 
 @keyframes fadeUp{
@@ -462,21 +463,19 @@ ANIMATION
 
         opacity:0;
 
-        transform:
-        translateY(20px);
+        transform:translateY(20px);
     }
 
     to{
 
         opacity:1;
 
-        transform:
-        translateY(0);
+        transform:translateY(0);
     }
 }
 
 /* ==========================
-RESPONSIVE
+   RESPONSIVE
 ========================== */
 
 @media(max-width:768px){
@@ -492,6 +491,8 @@ grid-template-columns:1fr;
 flex-direction:column;
 
 align-items:flex-start;
+
+gap:16px;
 
 }
 

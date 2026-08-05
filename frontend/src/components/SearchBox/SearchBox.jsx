@@ -3,7 +3,11 @@ import {
   FiSearch,
   FiPaperclip,
   FiMic,
-  FiArrowRight
+  FiArrowRight,
+  FiFileText,
+  FiVideo,
+  FiImage,
+  FiVolume2
 } from "react-icons/fi";
 
 function SearchBox() {
@@ -11,16 +15,18 @@ function SearchBox() {
     <section className="search-box">
 
       <div className="search-header">
+
         <h2>Ask your Knowledge</h2>
 
         <p>
-          Search across PDFs, videos, images and audio using AI.
+          Search across PDFs, Images, Audio and Videos using one intelligent AI search.
         </p>
+
       </div>
 
       <div className="search-container">
 
-        <FiSearch className="search-icon"/>
+        <FiSearch className="search-icon" />
 
         <input
           type="text"
@@ -28,28 +34,40 @@ function SearchBox() {
         />
 
         <button className="icon-btn">
-          <FiPaperclip/>
+          <FiPaperclip />
         </button>
 
         <button className="icon-btn">
-          <FiMic/>
+          <FiMic />
         </button>
 
         <button className="search-btn">
-          <FiArrowRight/>
+          <FiArrowRight />
         </button>
 
       </div>
 
       <div className="search-suggestions">
 
-        <button>Summarize PDF</button>
+        <button>
+          <FiFileText />
+          Summarize PDF
+        </button>
 
-        <button>Find object in CCTV</button>
+        <button>
+          <FiVideo />
+          CCTV Search
+        </button>
 
-        <button>Convert Audio to Text</button>
+        <button>
+          <FiVolume2 />
+          Audio to Text
+        </button>
 
-        <button>Video Summary</button>
+        <button>
+          <FiImage />
+          OCR Image
+        </button>
 
       </div>
 

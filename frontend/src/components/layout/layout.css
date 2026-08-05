@@ -1,23 +1,32 @@
-.app-layout {
-  min-height: 100vh;
+.app-layout{
+    min-height:100vh;
+    background:#151716;
 }
 
-.main-layout {
-  display: flex;
+.main-layout{
+    display:flex;
+    margin:0;
+    padding:0;
 }
 
-.content-area {
-  flex: 1;
-  padding: 2rem;
-  min-width: 0;
+.content-area{
+    flex:1;
+    min-width:0;
+
+    margin:0;
+    padding:0;
+
+    overflow-x:hidden;
 }
 
-@media (max-width: 768px) {
-  .main-layout {
-    flex-direction: column;
-  }
+@media(max-width:768px){
 
-  .content-area {
-    padding: 1rem;
-  }
+.main-layout{
+flex-direction:column;
+}
+
+.content-area{
+padding:0;
+}
+
 }

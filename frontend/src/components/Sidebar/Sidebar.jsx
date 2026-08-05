@@ -16,7 +16,7 @@ import { useAuth } from "../../context/AuthContext";
 import "./Sidebar.css";
 
 const menuItems = [
-  { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> },
+  { to: "/dashboard", label: "Home", icon: <FaTachometerAlt /> },
   { to: "/upload", label: "Upload", icon: <FaCloudUploadAlt /> },
   { to: "/search", label: "AI Search", icon: <FaSearch /> },
   { to: "/my-files", label: "My Files", icon: <FaFolderOpen /> },
@@ -38,13 +38,14 @@ function Sidebar() {
 
   return (
     <aside className="sidebar">
+
       <nav className="sidebar-menu">
         {menuItems.map((item) => (
           <NavLink
             key={item.label}
             to={item.to}
             className={({ isActive }) =>
-              "sidebar-item" + (isActive ? " active" : "")
+              `sidebar-item ${isActive ? "active" : ""}`
             }
           >
             {item.icon}
@@ -54,16 +55,22 @@ function Sidebar() {
       </nav>
 
       <div className="sidebar-bottom">
-        <button className="sidebar-item logout" onClick={handleLogout}>
+
+        <button
+          className="sidebar-item logout"
+          onClick={handleLogout}
+        >
           <FaSignOutAlt />
           <span>Logout</span>
         </button>
 
         <div className="sidebar-version">
           <h4>AI Knowledge Search</h4>
-          <p>v1.0</p>
+          <p>Version 1.0</p>
         </div>
+
       </div>
+
     </aside>
   );
 }

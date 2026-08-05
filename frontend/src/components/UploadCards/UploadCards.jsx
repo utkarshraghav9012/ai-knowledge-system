@@ -12,30 +12,30 @@ const cards = [
   {
     id: "pdf",
     title: "PDF Intelligence",
-    description: "Summarize PDFs, ask questions and extract important insights.",
+    description: "Upload PDFs, generate summaries and ask AI questions.",
     icon: <FiFileText />,
-    tag: "Documents"
+    badge: "PDF"
   },
   {
     id: "video",
-    title: "Vision AI",
-    description: "Search CCTV footage, detect objects and summarize videos.",
+    title: "Video Intelligence",
+    description: "Analyze videos, search objects and create AI summaries.",
     icon: <FiVideo />,
-    tag: "Video"
+    badge: "VIDEO"
   },
   {
     id: "audio",
-    title: "Speech AI",
-    description: "Convert speech to text, generate transcripts and summaries.",
+    title: "Audio Intelligence",
+    description: "Speech-to-text, transcripts and AI generated summaries.",
     icon: <FiMic />,
-    tag: "Audio"
+    badge: "AUDIO"
   },
   {
     id: "image",
-    title: "OCR & Images",
-    description: "Extract text from images and understand visual content.",
+    title: "Image Intelligence",
+    description: "OCR, object understanding and image based AI search.",
     icon: <FiImage />,
-    tag: "Image"
+    badge: "IMAGE"
   }
 ];
 
@@ -57,13 +57,13 @@ function UploadCards() {
 
           <div className="card-top">
 
-            <div className="card-icon">
+            <span className="card-icon">
               {card.icon}
-            </div>
+            </span>
 
-            <div className="card-tag">
-              {card.tag}
-            </div>
+            <span className="card-badge">
+              {card.badge}
+            </span>
 
           </div>
 
