@@ -1,31 +1,58 @@
 import "./SearchBox.css";
-
-import { FiSearch, FiMic, FiPaperclip, FiArrowRight } from "react-icons/fi";
+import {
+  FiSearch,
+  FiPaperclip,
+  FiMic,
+  FiArrowRight
+} from "react-icons/fi";
 
 function SearchBox() {
   return (
     <section className="search-box">
+
       <div className="search-header">
-        <h2>AI Search</h2>
-        <p>Ask anything from your PDFs, Videos, Images or Audio files.</p>
+        <h2>Ask your Knowledge</h2>
+
+        <p>
+          Search across PDFs, videos, images and audio using AI.
+        </p>
       </div>
 
       <div className="search-container">
-        <FiSearch className="search-icon" />
-        <input type="text" placeholder="Search your knowledge..." />
+
+        <FiSearch className="search-icon"/>
+
+        <input
+          type="text"
+          placeholder="Ask anything from your knowledge base..."
+        />
 
         <button className="icon-btn">
-          <FiPaperclip />
+          <FiPaperclip/>
         </button>
 
         <button className="icon-btn">
-          <FiMic />
+          <FiMic/>
         </button>
 
         <button className="search-btn">
-          <FiArrowRight />
+          <FiArrowRight/>
         </button>
+
       </div>
+
+      <div className="search-suggestions">
+
+        <button>Summarize PDF</button>
+
+        <button>Find object in CCTV</button>
+
+        <button>Convert Audio to Text</button>
+
+        <button>Video Summary</button>
+
+      </div>
+
     </section>
   );
 }

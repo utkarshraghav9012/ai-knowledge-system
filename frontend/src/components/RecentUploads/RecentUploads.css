@@ -1,98 +1,321 @@
-.recent-uploads {
-    padding:1.8rem;
-    border-radius:24px;
-    background: linear-gradient(150deg, rgba(18,22,40,.92), rgba(10,12,24,.88));
-    border:1px solid rgba(255,255,255,.08);
-    backdrop-filter:blur(25px);
+.recent-uploads{
+
+    background:#1B1E1D;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:22px;
+
+    padding:24px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.28);
+
 }
 
-.recent-uploads-header {
+
+
+.recent-header{
+
     display:flex;
-    align-items:center;
+
     justify-content:space-between;
-    margin-bottom:1.3rem;
-}
 
-.recent-uploads-header h3 {
-    color:#fff;
-    font-size:1.15rem;
-    font-weight:700;
-}
-
-.view-all-btn {
-    background:transparent;
-    color:#818cf8;
-    font-size:.85rem;
-    font-weight:600;
-}
-
-.view-all-btn:hover {
-    color:#a5b4fc;
-}
-
-.recent-uploads-list {
-    display:flex;
-    flex-direction:column;
-    gap:.6rem;
-}
-
-.recent-file-item {
-    display:flex;
     align-items:center;
-    gap:1rem;
-    padding:.85rem;
-    border-radius:16px;
-    transition:.3s ease;
-    cursor:pointer;
+
+    margin-bottom:24px;
+
 }
 
-.recent-file-item:hover {
-    background:rgba(255,255,255,.05);
-    transform:translateX(4px);
+
+
+.recent-header h2{
+
+    color:#F3F2EE;
+
+    font-size:1.25rem;
+
+    margin:0;
+
 }
 
-.recent-file-icon {
-    width:44px;
-    height:44px;
-    flex-shrink:0;
+
+
+.recent-header p{
+
+    margin-top:6px;
+
+    color:#9CA59F;
+
+    font-size:.88rem;
+
+}
+
+
+
+.view-all{
+
+    background:#252A28;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    color:#BFC6C2;
+
+    padding:10px 16px;
+
     border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+
+.view-all:hover{
+
+    background:#2F3734;
+
+    border-color:#5E756B;
+
+    color:white;
+
+}
+
+
+
+.recent-list{
+
     display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+
+
+.recent-item{
+
+    display:flex;
+
     align-items:center;
+
+    gap:16px;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    background:#252A28;
+
+    border:1px solid rgba(255,255,255,.04);
+
+    transition:.25s;
+
+}
+
+
+
+.recent-item:hover{
+
+    background:#2D3431;
+
+    border-color:#5E756B;
+
+}
+
+
+
+.recent-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
     justify-content:center;
-    color:#fff;
-    font-size:1rem;
+
+    background:#365046;
+
+    color:#DCE8E2;
+
+    font-size:22px;
+
 }
 
-.recent-file-icon.tone-pdf { background:linear-gradient(135deg,#ef4444,#b91c1c); }
-.recent-file-icon.tone-video { background:linear-gradient(135deg,#10b981,#059669); }
-.recent-file-icon.tone-audio { background:linear-gradient(135deg,#f59e0b,#d97706); }
-.recent-file-icon.tone-image { background:linear-gradient(135deg,#3b82f6,#2563eb); }
+.recent-info{
 
-.recent-file-info {
     flex:1;
+
     min-width:0;
+
 }
 
-.recent-file-info h4 {
-    color:#fff;
-    font-size:.92rem;
+
+
+.recent-info h4{
+
+    margin:0 0 6px;
+
+    color:#F3F2EE;
+
+    font-size:.98rem;
+
     font-weight:600;
-    margin-bottom:2px;
+
     white-space:nowrap;
+
     overflow:hidden;
+
     text-overflow:ellipsis;
+
 }
 
-.recent-file-info p {
-    color:#94a3b8;
-    font-size:.78rem;
+
+
+.recent-info span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#9CA59F;
+
+    font-size:.82rem;
+
 }
 
-.recent-file-arrow {
-    color:rgba(255,255,255,.3);
-    flex-shrink:0;
+
+
+.recent-info span svg{
+
+    font-size:13px;
+
 }
+
+
+
+.open-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2D3431;
+
+    color:#BFC6C2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+
+.open-btn:hover{
+
+    background:#365046;
+
+    color:white;
+
+    transform:translate(2px,-2px);
+
+}
+
+
 
 @media(max-width:768px){
-.recent-uploads{ padding:1.3rem; }
+
+.recent-uploads{
+
+padding:20px;
+
+}
+
+.recent-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:14px;
+
+}
+
+.recent-item{
+
+padding:14px;
+
+gap:14px;
+
+}
+
+.recent-icon{
+
+width:46px;
+
+height:46px;
+
+font-size:20px;
+
+}
+
+}
+
+
+
+@media(max-width:480px){
+
+.recent-uploads{
+
+padding:16px;
+
+}
+
+.recent-header h2{
+
+font-size:1.1rem;
+
+}
+
+.recent-info h4{
+
+font-size:.9rem;
+
+}
+
+.recent-info span{
+
+font-size:.75rem;
+
+}
+
+.open-btn{
+
+width:38px;
+
+height:38px;
+
+}
+
 }

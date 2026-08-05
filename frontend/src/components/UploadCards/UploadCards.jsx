@@ -1,36 +1,92 @@
 import { useNavigate } from "react-router-dom";
-import { FaFilePdf, FaVideo, FaMicrophone, FaImage, FaChevronRight } from "react-icons/fa";
+import {
+  FiFileText,
+  FiVideo,
+  FiMic,
+  FiImage,
+  FiArrowUpRight
+} from "react-icons/fi";
 import "./UploadCards.css";
 
 const cards = [
-  { id: "pdf", title: "Upload PDF", desc: "Extract text, summarize and ask questions", icon: <FaFilePdf />, tone: "pdf" },
-  { id: "video", title: "Upload Video", desc: "Find anything in videos with AI", icon: <FaVideo />, tone: "video" },
-  { id: "audio", title: "Upload Audio", desc: "Convert audio to text and get summary", icon: <FaMicrophone />, tone: "audio" },
-  { id: "image", title: "Upload Image", desc: "OCR and image understanding", icon: <FaImage />, tone: "image" },
+  {
+    id: "pdf",
+    title: "PDF Intelligence",
+    description: "Summarize PDFs, ask questions and extract important insights.",
+    icon: <FiFileText />,
+    tag: "Documents"
+  },
+  {
+    id: "video",
+    title: "Vision AI",
+    description: "Search CCTV footage, detect objects and summarize videos.",
+    icon: <FiVideo />,
+    tag: "Video"
+  },
+  {
+    id: "audio",
+    title: "Speech AI",
+    description: "Convert speech to text, generate transcripts and summaries.",
+    icon: <FiMic />,
+    tag: "Audio"
+  },
+  {
+    id: "image",
+    title: "OCR & Images",
+    description: "Extract text from images and understand visual content.",
+    icon: <FiImage />,
+    tag: "Image"
+  }
 ];
 
 function UploadCards() {
+
   const navigate = useNavigate();
 
   return (
+
     <section className="upload-cards">
+
       {cards.map((card) => (
+
         <button
           key={card.id}
-          className={`upload-card tone-${card.tone}`}
+          className="upload-card"
           onClick={() => navigate(`/upload?type=${card.id}`)}
         >
-          <div className="upload-card-top">
-            <span className="upload-card-icon">{card.icon}</span>
-            <FaChevronRight className="upload-card-arrow" />
+
+          <div className="card-top">
+
+            <div className="card-icon">
+              {card.icon}
+            </div>
+
+            <div className="card-tag">
+              {card.tag}
+            </div>
+
           </div>
 
           <h3>{card.title}</h3>
-          <p>{card.desc}</p>
+
+          <p>{card.description}</p>
+
+          <div className="card-footer">
+
+            <span>Open Workspace</span>
+
+            <FiArrowUpRight />
+
+          </div>
+
         </button>
+
       ))}
+
     </section>
+
   );
+
 }
 
 export default UploadCards;
