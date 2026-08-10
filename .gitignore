@@ -1,0 +1,7 @@
+backend/uploads/
+.vscode/
+backend/target/
+frontend/node_modules/
+backend/.env
+frontend/.env
+*.log

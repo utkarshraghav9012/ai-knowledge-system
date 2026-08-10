@@ -6,7 +6,7 @@
 
 .upload-title {
     text-align: center;
-    color: #ffffff;
+    color: #F3F2EE;
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 10px;
@@ -14,527 +14,418 @@
 
 .upload-subtitle {
     text-align: center;
-    color: #9ca3af;
+    color: #AAB2AC;
     margin-bottom: 35px;
     font-size: 1rem;
 }
 
-/* ==========================
+/* ===================================
    DROP ZONE
-========================== */
+=================================== */
 
 .upload-dropzone {
-
     padding: 55px 30px;
-
     border-radius: 24px;
-
     border: 2px dashed rgba(255,255,255,.10);
-
     background: linear-gradient(
         180deg,
-        #111827,
-        #0b1220
+        #1B1E1D,
+        #2D3431
     );
-
-    transition: .3s ease;
-
     text-align: center;
-
     cursor: pointer;
-
+    transition: .3s ease;
     box-shadow: 0 20px 45px rgba(0,0,0,.35);
 }
 
 .upload-dropzone:hover,
 .upload-dropzone.dragging{
-
-    border-color:#3b82f6;
-
+    border-color:#5E756B;
     transform:translateY(-4px);
-
-    box-shadow:
-    0 0 35px rgba(59,130,246,.18);
+    box-shadow:0 0 35px rgba(126,167,193,.18);
 }
 
 .upload-cloud-icon{
-
     font-size:65px;
-
-    color:#60a5fa;
-
+    color:#7EA7C1;
     margin-bottom:18px;
 }
 
 .upload-drop-text{
-
-    color:#ffffff;
-
+    color:#F3F2EE;
     font-size:1.2rem;
-
     font-weight:700;
-
     margin-bottom:10px;
 }
 
 .upload-or{
-
-    color:#9ca3af;
-
+    color:#AAB2AC;
     margin-bottom:22px;
 }
 
-/* ==========================
+/* ===================================
    BUTTONS
-========================== */
+=================================== */
 
 .choose-file-btn,
 .upload-btn{
-
     border:none;
-
     outline:none;
-
     cursor:pointer;
-
-    color:#ffffff;
-
+    color:#F3F2EE;
     font-weight:700;
-
     border-radius:14px;
-
-    transition:.25s;
-
-    background:
-    linear-gradient(
-    135deg,
-    #2563eb,
-    #3b82f6);
+    transition:.3s;
+    background:linear-gradient(
+        135deg,
+        #5E756B,
+        #7B9A8D
+    );
 }
 
 .choose-file-btn{
-
     padding:14px 34px;
 }
 
 .upload-btn{
-
     width:100%;
-
     margin-top:24px;
-
     padding:16px;
 }
 
 .choose-file-btn:hover,
 .upload-btn:hover{
-
     transform:translateY(-3px);
-
-    box-shadow:
-    0 15px 35px rgba(37,99,235,.35);
+    box-shadow:0 15px 35px rgba(94,117,107,.35);
 }
 
-/* ==========================
+/* ===================================
    SELECTED FILE
-========================== */
+=================================== */
 
 .selected-file-card{
-
     margin-top:28px;
-
     padding:20px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     border-radius:20px;
-
-    background:#111827;
-
+    background:#2D3431;
     border:1px solid rgba(255,255,255,.08);
-
     animation:fadeUp .3s ease;
 }
 
 .selected-file-left{
-
     display:flex;
-
     gap:18px;
-
     align-items:center;
 }
 
 .selected-file-icon{
-
     width:60px;
-
     height:60px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    background:
-    linear-gradient(
-    135deg,
-    #2563eb,
-    #3b82f6);
-
-    color:#ffffff;
-
+    background:linear-gradient(
+        135deg,
+        #5E756B,
+        #7EA7C1
+    );
+    color:#fff;
     border-radius:16px;
-
     font-size:24px;
 }
 
 .selected-file-left h3{
-
-    color:#ffffff;
-
+    color:#F3F2EE;
     font-size:1rem;
-
     margin-bottom:5px;
 }
 
 .selected-file-left p{
-
-    color:#9ca3af;
-
+    color:#AAB2AC;
     font-size:.85rem;
 }
 
 .remove-file-btn{
-
     width:48px;
-
     height:48px;
-
     border:none;
-
     cursor:pointer;
-
     border-radius:14px;
-
-    background:#1f2937;
-
-    color:#ffffff;
-
+    background:#252A28;
+    color:#F3F2EE;
     border:1px solid rgba(255,255,255,.08);
-
-    transition:.25s;
+    transition:.3s;
 }
 
 .remove-file-btn:hover{
-
-    background:#2563eb;
-
-    tran
-    
-    sform:scale(1.06);
+    background:#5E756B;
+    transform:scale(1.06);
 }
 
-/* ==========================
+/* ===================================
    PROGRESS
-========================== */
+=================================== */
 
 .progress-wrapper{
-
     margin-top:28px;
 }
 
 .progress-header{
-
     display:flex;
-
     justify-content:space-between;
-
-    color:#ffffff;
-
+    color:#F3F2EE;
     margin-bottom:10px;
-
     font-size:.9rem;
 }
 
 .progress-track{
-
     height:12px;
-
     border-radius:999px;
-
     overflow:hidden;
-
-    background:#1f2937;
+    background:#252A28;
 }
 
 .progress-fill{
-
     height:100%;
-
     border-radius:999px;
-
     background:linear-gradient(
         90deg,
-        #2563eb,
-        #3b82f6
+        #5E756B,
+        #7EA7C1
     );
-
     transition:.35s ease;
 }
 
-/* ==========================
+/* ===================================
    ALERTS
-========================== */
+=================================== */
 
 .upload-alert{
-
     margin-top:24px;
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     padding:16px 20px;
-
     border-radius:16px;
-
     font-weight:600;
-
     animation:fadeUp .35s ease;
 }
 
 .success-alert{
-
-    color:#bfdbfe;
-
-    background:rgba(37,99,235,.12);
-
-    border:1px solid rgba(37,99,235,.35);
+    color:#DCE8E2;
+    background:rgba(94,117,107,.15);
+    border:1px solid rgba(94,117,107,.35);
 }
 
 .error-alert{
-
-    color:#fecaca;
-
-    background:rgba(239,68,68,.12);
-
+    color:#FECACA;
+    background:rgba(239,68,68,.10);
     border:1px solid rgba(239,68,68,.30);
 }
 
-/* ==========================
+/* ===================================
    SUPPORTED FORMATS
-========================== */
+=================================== */
 
 .formats-title{
-
-    color:#ffffff;
-
+    color:#F3F2EE;
     margin-top:40px;
-
     margin-bottom:18px;
-
     font-size:1.15rem;
-
     font-weight:700;
 }
 
 .formats-grid{
-
     display:grid;
-
     grid-template-columns:repeat(2,1fr);
-
     gap:18px;
 }
 
 .format-card{
-
     display:flex;
-
     gap:16px;
-
     align-items:center;
-
     padding:18px;
-
     border-radius:18px;
-
-    background:#111827;
-
+    background:#2D3431;
     border:1px solid rgba(255,255,255,.08);
-
-    transition:.25s;
+    transition:.3s;
 }
 
 .format-card:hover{
-
     transform:translateY(-4px);
-
-    border-color:#3b82f6;
-
-    box-shadow:0 12px 30px rgba(37,99,235,.18);
+    border-color:#5E756B;
+    box-shadow:0 12px 30px rgba(94,117,107,.22);
 }
 
 .format-icon{
-
     width:50px;
-
     height:50px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     border-radius:14px;
-
-    color:#ffffff;
-
-    font-size:20px;
-
     background:linear-gradient(
         135deg,
-        #2563eb,
-        #3b82f6
+        #5E756B,
+        #7EA7C1
+    );
+    color:#F3F2EE;
+    font-size:20px;
+}
+
+.tone-blue .format-icon{
+    background:linear-gradient(
+        135deg,
+        #5E756B,
+        #7EA7C1
     );
 }
 
-/* Same Theme For All Cards */
-
-.tone-pdf .format-icon{
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-}
-
-.tone-video .format-icon{
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-}
-
-.tone-audio .format-icon{
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-}
-
-.tone-image .format-icon{
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-}
-
 .format-card h4{
-
-    color:#ffffff;
-
+    color:#F3F2EE;
     margin-bottom:4px;
-
     font-size:.95rem;
 }
 
 .format-card p{
-
-    color:#9ca3af;
-
+    color:#AAB2AC;
     font-size:.82rem;
 }
 
 .upload-note{
-
     margin-top:28px;
-
     text-align:center;
-
-    color:#6b7280;
-
+    color:#8D9791;
     font-size:.85rem;
 }
 
-/* ==========================
+/* ===================================
    ANIMATION
-========================== */
+=================================== */
 
-@keyframes fadeUp{
+@keyframes fadeUp {
 
-    from{
-
-        opacity:0;
-
-        transform:translateY(20px);
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* ==========================
+/* ===================================
    RESPONSIVE
-========================== */
+=================================== */
 
-@media(max-width:768px){
+@media (max-width: 768px) {
 
-.formats-grid{
+    .formats-grid {
+        grid-template-columns: 1fr;
+    }
 
-grid-template-columns:1fr;
+    .selected-file-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
 
-}
+    .remove-file-btn {
+        align-self: flex-end;
+    }
 
-.selected-file-card{
+    .upload-dropzone {
+        padding: 40px 20px;
+    }
 
-flex-direction:column;
+    .upload-cloud-icon {
+        font-size: 55px;
+    }
 
-align-items:flex-start;
+    .upload-title {
+        font-size: 2rem;
+    }
 
-gap:16px;
+    .upload-subtitle {
+        font-size: .95rem;
+    }
 
-}
-
-.remove-file-btn{
-
-align-self:flex-end;
-
-}
-
-.upload-dropzone{
-
-padding:40px 20px;
-
-}
-
-.upload-cloud-icon{
-
-font-size:55px;
-
-}
-
-}
-
-@media(max-width:480px){
-
-.upload-title{
-
-font-size:1.8rem;
+    .choose-file-btn,
+    .upload-btn {
+        width: 100%;
+    }
 
 }
 
-.upload-subtitle{
+@media (max-width: 480px) {
 
-font-size:.9rem;
+    .upload-page {
+        padding: 10px 0 35px;
+    }
 
-}
+    .upload-title {
+        font-size: 1.75rem;
+    }
 
-.choose-file-btn,
-.upload-btn{
+    .upload-subtitle {
+        font-size: .9rem;
+        margin-bottom: 25px;
+    }
 
-font-size:.9rem;
+    .upload-dropzone {
+        padding: 30px 16px;
+        border-radius: 18px;
+    }
 
-}
+    .upload-drop-text {
+        font-size: 1rem;
+    }
 
+    .upload-cloud-icon {
+        font-size: 48px;
+    }
+
+    .selected-file-card {
+        padding: 16px;
+    }
+
+    .selected-file-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .formats-title {
+        font-size: 1rem;
+    }
+
+    .format-card {
+        padding: 14px;
+    }
+
+    .format-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    .format-card h4 {
+        font-size: .9rem;
+    }
+
+    .format-card p {
+        font-size: .75rem;
+    }
+
+    .choose-file-btn,
+    .upload-btn {
+        font-size: .9rem;
+        padding: 14px;
+    }
 }

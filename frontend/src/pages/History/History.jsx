@@ -1,88 +1,219 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./History.css";
 
-const historyData = [
-  {
-    id: 1,
-    query: "What is LBW rule?",
-    type: "PDF",
-    file: "Cricket Rules.pdf",
-    time: "Today • 10:42 AM",
-  },
-  {
-    id: 2,
-    query: "Summarize CCTV footage",
-    type: "Video",
-    file: "CCTV_Footage.mp4",
-    time: "Yesterday • 7:15 PM",
-  },
-  {
-    id: 3,
-    query: "Extract all names",
-    type: "PDF",
-    file: "Employee_List.pdf",
-    time: "2 Days Ago",
-  },
-  {
-    id: 4,
-    query: "Find dog in video",
-    type: "Video",
-    file: "Parking_Camera.mp4",
-    time: "Last Week",
-  },
-];
-
 function History() {
-  return (
-    <div className="history-page">
+const [historyData, setHistoryData] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
 
-      <div className="history-header">
-        <h1>Search History</h1>
-        <p>View and manage all your previous AI searches.</p>
-      </div>
+useEffect(() => {
+fetchHistory();
+}, []);
 
-      <div className="history-search">
-        <input
-          type="text"
-          placeholder="Search history..."
-        />
-      </div>
+const fetchHistory = async () => {
+try {
+setLoading(true);
+setError("");
 
-      <div className="history-list">
 
-        {historyData.map((item) => (
-          <div className="history-card" key={item.id}>
+  const token = localStorage.getItem("token");
 
-            <div className="history-info">
+  const response = await axios.get(
+    "http://localhost:8080/api/files",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
-              <h3>{item.query}</h3>
+  setHistoryData(response.data || []);
+} catch (err) {
+  console.error("History Error:", err);
+  setError("Unable to load search history.");
+} finally {
+  setLoading(false);
+}
 
-              <p>{item.file}</p>
 
-              <span>
-                {item.type} • {item.time}
-              </span>
+};
 
-            </div>
+const formatDate = (date) => {
+if (!date) return "Unknown time";
 
-            <div className="history-actions">
 
-              <button className="open-btn">
-                Open Again
-              </button>
+const uploadDate = new Date(date);
 
-              <button className="delete-btn">
-                Delete
-              </button>
+return uploadDate.toLocaleString("en-IN", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
 
-            </div>
+
+};
+
+const filteredHistory = historyData.filter((item) => {
+const search = searchTerm.toLowerCase();
+
+
+return (
+  item.originalName?.toLowerCase().includes(search) ||
+  item.fileName?.toLowerCase().includes(search) ||
+  item.fileType?.toLowerCase().includes(search) ||
+  item.status?.toLowerCase().includes(search)
+);
+
+
+});
+
+const handleDelete = async (id) => {
+const confirmDelete = window.confirm(
+"Are you sure you want to delete this file?"
+);
+
+
+if (!confirmDelete) return;
+
+try {
+  const token = localStorage.getItem("token");
+
+  await axios.delete(
+    `http://localhost:8080/api/files/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  setHistoryData((prev) =>
+    prev.filter((item) => item.id !== id)
+  );
+} catch (err) {
+  console.error("Delete Error:", err);
+  alert("Unable to delete file.");
+}
+
+
+};
+
+return ( <div className="history-page">
+
+
+  <div className="history-header">
+    <h1>Search History</h1>
+    <p>
+      View and manage all your previous AI searches and uploaded files.
+    </p>
+  </div>
+
+  <div className="history-search">
+    <input
+      type="text"
+      placeholder="Search history..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  </div>
+
+  {loading && (
+    <div className="history-empty">
+      <p>Loading history...</p>
+    </div>
+  )}
+
+  {!loading && error && (
+    <div className="history-empty">
+      <p>{error}</p>
+
+      <button
+        className="open-btn"
+        onClick={fetchHistory}
+      >
+        Retry
+      </button>
+    </div>
+  )}
+
+  {!loading && !error && filteredHistory.length === 0 && (
+    <div className="history-empty">
+      <h3>No history found</h3>
+      <p>
+        Upload a file and it will appear here automatically.
+      </p>
+    </div>
+  )}
+
+  {!loading && !error && filteredHistory.length > 0 && (
+    <div className="history-list">
+
+      {filteredHistory.map((item) => (
+
+        <div
+          className="history-card"
+          key={item.id}
+        >
+
+          <div className="history-info">
+
+            <h3>
+              {item.originalName ||
+                item.fileName ||
+                "Unnamed File"}
+            </h3>
+
+            <p>
+              {item.fileType || "FILE"}
+            </p>
+
+            <span>
+              {item.status || "UPLOADED"}
+              {" • "}
+              {formatDate(item.uploadDate)}
+            </span>
 
           </div>
-        ))}
 
-      </div>
+          <div className="history-actions">
+
+            <button
+              className="open-btn"
+              onClick={() => {
+                alert(
+                  "File ID: " + item.id
+                );
+              }}
+            >
+              Open Again
+            </button>
+
+            <button
+              className="delete-btn"
+              onClick={() =>
+                handleDelete(item.id)
+              }
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      ))}
 
     </div>
-  );
+  )}
+
+</div>
+
+
+);
 }
 
 export default History;

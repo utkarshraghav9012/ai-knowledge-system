@@ -4,7 +4,8 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
-import java.security.Key;
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
@@ -13,48 +14,76 @@ public class JwtUtil {
     private final String SECRET_KEY =
             "mysecretkeymysecretkeymysecretkey123456";
 
-    private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
+    // JWT valid for 24 hours
+    private static final long EXPIRATION_TIME =
+            24L * 60L * 60L * 1000L;
 
+    private SecretKey getSigningKey() {
 
-    private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        return Keys.hmacShaKeyFor(
+                SECRET_KEY.getBytes(StandardCharsets.UTF_8)
+        );
     }
 
+    // ==========================
+    // GENERATE TOKEN
+    // ==========================
 
     public String generateToken(String username) {
 
+        Date issuedAt = new Date();
+
+        Date expiration = new Date(
+                issuedAt.getTime() + EXPIRATION_TIME
+        );
+
         return Jwts.builder()
                 .subject(username)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis()
-                        + EXPIRATION_TIME))
+                .issuedAt(issuedAt)
+                .expiration(expiration)
                 .signWith(getSigningKey())
                 .compact();
     }
 
+    // ==========================
+    // EXTRACT USERNAME
+    // ==========================
 
     public String extractUsername(String token) {
 
         return Jwts.parser()
-                .verifyWith((javax.crypto.SecretKey) getSigningKey())
+                .verifyWith(getSigningKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
                 .getSubject();
     }
 
+    // ==========================
+    // VALIDATE TOKEN
+    // ==========================
 
     public boolean validateToken(String token) {
 
         try {
+
             Jwts.parser()
-                    .verifyWith((javax.crypto.SecretKey) getSigningKey())
+                    .verifyWith(getSigningKey())
                     .build()
                     .parseSignedClaims(token);
 
             return true;
 
-        } catch (JwtException e) {
+        } catch (ExpiredJwtException e) {
+
+            System.out.println("JWT token expired.");
+
+            return false;
+
+        } catch (JwtException | IllegalArgumentException e) {
+
+            System.out.println("Invalid JWT token.");
+
             return false;
         }
     }

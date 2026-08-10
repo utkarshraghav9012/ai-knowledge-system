@@ -35,6 +35,27 @@ public class FileEntity {
     @Column(nullable = false)
     private LocalDateTime uploadDate;
 
+    // ==========================
+    // AI Metadata
+    // ==========================
+
+    @Column(length = 500)
+    private String documentTitle;
+
+    private Integer pageCount;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String extractedText;
+
+    // ==========================
+    // Gemini AI Summary
+    // ==========================
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String summary;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -112,6 +133,38 @@ public class FileEntity {
 
     public void setUploadDate(LocalDateTime uploadDate) {
         this.uploadDate = uploadDate;
+    }
+
+    public String getDocumentTitle() {
+        return documentTitle;
+    }
+
+    public void setDocumentTitle(String documentTitle) {
+        this.documentTitle = documentTitle;
+    }
+
+    public Integer getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public String getExtractedText() {
+        return extractedText;
+    }
+
+    public void setExtractedText(String extractedText) {
+        this.extractedText = extractedText;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public User getUser() {

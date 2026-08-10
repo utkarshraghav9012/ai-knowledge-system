@@ -20,24 +20,53 @@ import java.util.UUID;
 public class FileStorageService {
 
     private final FileRepository fileRepository;
+    private final PDFProcessingService pdfProcessingService;
+    private final OllamaService ollamaService;
 
     @Value("${file.upload-dir:uploads}")
     private String uploadDir;
 
-    public FileStorageService(FileRepository fileRepository) {
+    public FileStorageService(
+            FileRepository fileRepository,
+            PDFProcessingService pdfProcessingService,
+            OllamaService ollamaService
+    ) {
         this.fileRepository = fileRepository;
+        this.pdfProcessingService = pdfProcessingService;
+        this.ollamaService = ollamaService;
     }
+
+    // ==========================
+    // CREATE UPLOAD DIRECTORIES
+    // ==========================
 
     public void createUploadDirectories() throws IOException {
 
-        Files.createDirectories(Paths.get(uploadDir, "pdf"));
-        Files.createDirectories(Paths.get(uploadDir, "videos"));
-        Files.createDirectories(Paths.get(uploadDir, "images"));
-        Files.createDirectories(Paths.get(uploadDir, "audio"));
+        Files.createDirectories(
+                Paths.get(uploadDir, "pdf")
+        );
 
+        Files.createDirectories(
+                Paths.get(uploadDir, "videos")
+        );
+
+        Files.createDirectories(
+                Paths.get(uploadDir, "images")
+        );
+
+        Files.createDirectories(
+                Paths.get(uploadDir, "audio")
+        );
     }
 
-    public FileUploadResponse saveFile(MultipartFile file, User user) throws IOException {
+    // ==========================
+    // SAVE FILE
+    // ==========================
+
+    public FileUploadResponse saveFile(
+            MultipartFile file,
+            User user
+    ) throws IOException {
 
         createUploadDirectories();
 
@@ -45,151 +74,384 @@ public class FileStorageService {
 
         String folder = getFolder(file);
 
-        String extension = getExtension(file.getOriginalFilename());
+        String extension =
+                getExtension(file.getOriginalFilename());
 
-        String storedName = UUID.randomUUID() + extension;
+        String storedName =
+                UUID.randomUUID() + extension;
 
-        Path destination = Paths.get(uploadDir, folder, storedName);
+        Path destination =
+                Paths.get(
+                        uploadDir,
+                        folder,
+                        storedName
+                );
 
-        Files.copy(file.getInputStream(), destination);
+        Files.copy(
+                file.getInputStream(),
+                destination
+        );
 
         FileEntity entity = new FileEntity();
 
-        entity.setOriginalName(file.getOriginalFilename());
+        entity.setOriginalName(
+                file.getOriginalFilename()
+        );
 
-        entity.setStoredName(storedName);
+        entity.setStoredName(
+                storedName
+        );
 
-        entity.setMimeType(file.getContentType());
+        entity.setMimeType(
+                file.getContentType()
+        );
 
-        entity.setFileType(folder.toUpperCase());
+        entity.setFileType(
+                folder.toUpperCase()
+        );
 
-        entity.setFileSize(file.getSize());
+        entity.setFileSize(
+                file.getSize()
+        );
 
-        entity.setFilePath(destination.toString());
+        entity.setFilePath(
+                destination.toString()
+        );
 
-        entity.setStatus("UPLOADED");
-
-        entity.setUploadDate(LocalDateTime.now());
+        entity.setUploadDate(
+                LocalDateTime.now()
+        );
 
         entity.setUser(user);
 
-        entity = fileRepository.save(entity);
+        entity.setStatus("UPLOADED");
 
-        FileUploadResponse response = new FileUploadResponse();
+        // ==========================
+        // PDF AI PROCESSING
+        // ==========================
 
-        response.setId(entity.getId());
+        if ("pdf".equals(folder)) {
 
-        response.setFileName(entity.getOriginalName());
+            entity.setStatus("PROCESSING");
 
-        response.setFileType(entity.getFileType());
+            // Document title
+            entity.setDocumentTitle(
+                    pdfProcessingService.getDocumentTitle(
+                            destination.toString()
+                    )
+            );
 
-        response.setFileSize(entity.getFileSize());
+            // Page count
+            entity.setPageCount(
+                    pdfProcessingService.getTotalPages(
+                            destination.toString()
+                    )
+            );
 
-        response.setUploadDate(entity.getUploadDate());
+            // Extract PDF text
+            String extractedText =
+                    pdfProcessingService.extractText(
+                            destination.toString()
+                    );
 
-        response.setMessage("File uploaded successfully");
+            entity.setExtractedText(
+                    extractedText
+            );
+
+            // ==========================
+            // OLLAMA SUMMARY
+            // ==========================
+
+            String prompt = """
+                    You are an AI document assistant.
+
+                    Summarize the following document clearly and accurately.
+
+                    IMPORTANT RULES:
+
+                    - Use ONLY the information provided in the document.
+                    - Do not invent facts.
+                    - Do not use outside knowledge.
+                    - Keep the important information.
+                    - Use clear headings.
+                    - Use bullet points where useful.
+                    - Make the summary easy to understand.
+
+                    ========================
+                    DOCUMENT
+                    ========================
+
+                    %s
+
+                    ========================
+                    END OF DOCUMENT
+                    ========================
+                    """.formatted(extractedText);
+
+            String summary =
+                    ollamaService.generate(prompt);
+
+            entity.setSummary(summary);
+
+            entity.setStatus("COMPLETED");
+        }
+
+        // ==========================
+        // SAVE DATABASE RECORD
+        // ==========================
+
+        entity =
+                fileRepository.save(entity);
+
+        // ==========================
+        // CREATE RESPONSE
+        // ==========================
+
+        FileUploadResponse response =
+                new FileUploadResponse();
+
+        response.setId(
+                entity.getId()
+        );
+
+        response.setFileName(
+                entity.getOriginalName()
+        );
+
+        response.setFileType(
+                entity.getFileType()
+        );
+
+        response.setFileSize(
+                entity.getFileSize()
+        );
+
+        response.setUploadDate(
+                entity.getUploadDate()
+        );
+
+        response.setMessage(
+                "File uploaded and processed successfully."
+        );
 
         return response;
     }
-        private void validateFile(MultipartFile file) {
+
+    // ==========================
+    // VALIDATE FILE
+    // ==========================
+
+    private void validateFile(
+            MultipartFile file
+    ) {
 
         if (file == null || file.isEmpty()) {
-            throw new RuntimeException("File is empty.");
+
+            throw new RuntimeException(
+                    "File is empty."
+            );
         }
 
-        String contentType = file.getContentType();
+        String contentType =
+                file.getContentType();
 
-        long size = file.getSize();
+        long size =
+                file.getSize();
 
         if (contentType == null) {
-            throw new RuntimeException("Invalid file type.");
+
+            throw new RuntimeException(
+                    "Invalid file type."
+            );
         }
 
         switch (contentType) {
 
+            // PDF
             case "application/pdf":
-                if (size > 100 * 1024 * 1024) {
-                    throw new RuntimeException("PDF size exceeds 100 MB.");
+
+                if (size > 100L * 1024 * 1024) {
+
+                    throw new RuntimeException(
+                            "PDF size exceeds 100 MB."
+                    );
                 }
+
                 break;
 
+            // IMAGE
             case "image/jpeg":
             case "image/png":
             case "image/jpg":
-                if (size > 20 * 1024 * 1024) {
-                    throw new RuntimeException("Image size exceeds 20 MB.");
+
+                if (size > 20L * 1024 * 1024) {
+
+                    throw new RuntimeException(
+                            "Image size exceeds 20 MB."
+                    );
                 }
+
                 break;
 
+            // AUDIO
             case "audio/mpeg":
             case "audio/mp3":
             case "audio/wav":
-                if (size > 200 * 1024 * 1024) {
-                    throw new RuntimeException("Audio size exceeds 200 MB.");
+
+                if (size > 200L * 1024 * 1024) {
+
+                    throw new RuntimeException(
+                            "Audio size exceeds 200 MB."
+                    );
                 }
+
                 break;
 
+            // VIDEO
             case "video/mp4":
             case "video/x-msvideo":
             case "video/x-matroska":
-                if (size > 500 * 1024 * 1024) {
-                    throw new RuntimeException("Video size exceeds 500 MB.");
+
+                if (size > 500L * 1024 * 1024) {
+
+                    throw new RuntimeException(
+                            "Video size exceeds 500 MB."
+                    );
                 }
+
                 break;
 
             default:
-                throw new RuntimeException("Unsupported file type.");
+
+                throw new RuntimeException(
+                        "Unsupported file type."
+                );
         }
     }
 
-    private String getFolder(MultipartFile file) {
+    // ==========================
+    // GET FOLDER
+    // ==========================
 
-        String contentType = file.getContentType();
+    private String getFolder(
+            MultipartFile file
+    ) {
+
+        String contentType =
+                file.getContentType();
 
         if (contentType == null) {
-            throw new RuntimeException("Unknown file type.");
+
+            throw new RuntimeException(
+                    "Unknown file type."
+            );
         }
 
-        if (contentType.startsWith("application/pdf")) {
+        if (contentType.startsWith(
+                "application/pdf"
+        )) {
+
             return "pdf";
         }
 
-        if (contentType.startsWith("image")) {
+        if (contentType.startsWith(
+                "image"
+        )) {
+
             return "images";
         }
 
-        if (contentType.startsWith("video")) {
+        if (contentType.startsWith(
+                "video"
+        )) {
+
             return "videos";
         }
 
-        if (contentType.startsWith("audio")) {
+        if (contentType.startsWith(
+                "audio"
+        )) {
+
             return "audio";
         }
 
-        throw new RuntimeException("Unsupported file type.");
+        throw new RuntimeException(
+                "Unsupported file type."
+        );
     }
 
-    private String getExtension(String fileName) {
+    // ==========================
+    // GET FILE EXTENSION
+    // ==========================
 
-        if (fileName == null || !fileName.contains(".")) {
+    private String getExtension(
+            String fileName
+    ) {
+
+        if (
+                fileName == null ||
+                !fileName.contains(".")
+        ) {
+
             return "";
         }
 
-        return fileName.substring(fileName.lastIndexOf("."));
+        return fileName.substring(
+                fileName.lastIndexOf(".")
+        );
     }
 
-    public List<FileEntity> getUserFiles(User user) {
+    // ==========================
+    // GET USER FILES
+    // ==========================
 
-        return fileRepository.findByUserOrderByUploadDateDesc(user);
+    public List<FileEntity> getUserFiles(
+            User user
+    ) {
 
+        return fileRepository
+                .findByUserOrderByUploadDateDesc(user);
     }
 
-    public void deleteFile(Long id) throws IOException {
+    // ==========================
+    // GET FILE BY ID
+    // ==========================
 
-        FileEntity file = fileRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("File not found"));
+    public FileEntity getFileById(
+            Long id
+    ) {
 
-        Files.deleteIfExists(Paths.get(file.getFilePath()));
+        return fileRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException(
+                                "File not found"
+                        )
+                );
+    }
+
+    // ==========================
+    // DELETE FILE
+    // ==========================
+
+    public void deleteFile(
+            Long id
+    ) throws IOException {
+
+        FileEntity file =
+                fileRepository
+                        .findById(id)
+                        .orElseThrow(
+                                () -> new RuntimeException(
+                                        "File not found"
+                                )
+                        );
+
+        Files.deleteIfExists(
+                Paths.get(
+                        file.getFilePath()
+                )
+        );
 
         fileRepository.delete(file);
     }
